@@ -1,0 +1,24 @@
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<form action="{% url 'create-task' %}" method="POST">
+    {% csrf_token %}
+    <div class="modal fade" id="exampleCreateModal" tabindex="-1" aria-labelledby="exampleCreateModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 text-primary" id="exampleModalLabel">Topshiriqni yaratish</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{ form.as_p }}
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+                        <button type="submit" class="btn btn-primary">Yaratish</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

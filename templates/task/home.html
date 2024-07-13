@@ -1,0 +1,51 @@
+{% extends '_base.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block contend %}
+
+{% include 'task/navbar.html' %}
+{% include 'task/modal_create.html' %}
+{% include 'task/modal_edit.html' %}
+{% include 'task/modal_delete.html' %}
+{% include 'task/modal_detail.html' %}
+
+
+<!-- TABLE -->
+<table class="table table-hover mt-5">
+    <thead>
+    <tr>
+        <th class="w-75" scope="col">Topshiriqlar <span class="text-danger">10</span> ta</th>
+        <th scope="col">O`zgartirish</th>
+        <th scope="col">O`chirish</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for task in tasks %}
+    <tr>
+        <th scope="row" data-bs-toggle="modal" data-bs-target="#exampleDetailModal">
+            <a href="#"><h5>{{ task.title }}</h5></a>
+            <span class="text-secondary">June 27, 2024</span>
+            <span class="text-secondary float-end">4:38 p.m.</span>
+        </th>
+        <td class="text-center align-middle">
+            <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleEditModal">
+                <i class="bi bi-pencil-square"></i>
+            </button>
+        </td>
+        <td class="text-center align-middle">
+            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleDeleteModal">
+                <i class="bi bi-trash3-fill"></i>
+            </button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% include 'task/pagenation.html' %}
+
+
+{% endblock %}
