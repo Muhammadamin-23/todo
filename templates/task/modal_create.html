@@ -1,20 +1,34 @@
+<!-- MODAL CREATE -->
 <form action="{% url 'create-task' %}" method="POST">
     {% csrf_token %}
-    <div class="modal fade" id="exampleCreateModal" tabindex="-1" aria-labelledby="exampleCreateModalLabel"
+    <div class="modal fade" id="exampleCreateModal" tabindex="-1" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
+
+                <!-- CREATE TITLE -->
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-primary" id="exampleModalLabel">Topshiriqni yaratish</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h1 class="modal-title fs-5 text-primary" id="exampleModalLabel">Topshiriq yaratish</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                 </div>
+
+                <!-- FORM BODY -->
                 <div class="modal-body">
                     {{ form.as_p }}
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
-                        <button type="submit" class="btn btn-primary">Yaratish</button>
-                    </div>
                 </div>
+
+                <!-- BUTTONS -->
+                <div class="modal-footer">
+
+                    <!-- close -->
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+
+                    <!-- create -->
+                    <button type="submit" class="btn btn-primary">Yaratish</button>
+
+                </div>
+
             </div>
         </div>
     </div>

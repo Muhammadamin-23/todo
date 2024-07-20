@@ -1,0 +1,52 @@
+{% load static %}
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+     aria-labelledby="offcanvasWithBothOptionsLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title m-3" id="offcanvasWithBothOptionsLabel">Settings</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="bg-body-secondary">
+        <div class="img">
+            <img src="{% static  'task/image/avatar.jpg' %}" class="rounded-circle w-25" alt="1">
+        </div>
+        <div class="d-flex flex-column p-4">
+            <span class="bi bi-info-square dark"> Ma'lumotlarim</span>
+            <a href="#" class="bi bi-box-arrow-left  text-danger"> Chiqish</a>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="offcanvas-body">
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a class="w-100 link link-offset link-underline link-underline-opacity-0" href="{% url 'home-view' %}">
+                <span class="text-warning"><i class="bi bi-house-fill"></i>Bajarilmaganlar</span>
+                <span class="badge text-bg-warning rounded-pill float-end">{{ todo_count}}</span>
+            </a>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a class="w-100 link link-offset link-underline link-underline-opacity-0" href="{% url 'task-done-view' %}">
+                <span class="text-success"><i class="bi bi-trash2-fill"></i>
+                    Bajarilganlar</span>
+            </a>
+            <span class="badge text-bg-success rounded-pill">{{done_count}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a class="w-100 link link-offset link-underline link-underline-opacity-0" href="{% url 'task-delete-view' %}">
+                <span class="text-danger"><i class="bi bi-trash"></i>
+                O'chirilganlar</span>
+            </a>
+            <span class="badge text-bg-danger rounded-pill">{{deleted_count}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a class="w-100 link link-offset link-underline link-underline-opacity-0" href="{% url 'done-delete-task-view' %}">
+                <span class="text-dark"><i class="bi bi-trash2-fill"></i>
+                Bajarilgan va O'chirilgan</span>
+            </a>
+            <span class="badge text-bg-dark rounded-pill">{{done_deleted_count}}</span>
+        </li>
+    </ul>
+</div>

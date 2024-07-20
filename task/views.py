@@ -34,6 +34,7 @@ def task_view(request, sms, code, css_class):
         'todo_count': Task.todo.all().count(),
         'done_count': Task.done.all().count(),
         'deleted_count': Task.delete.all().count(),
+        "done_deleted_count": Task.done_delete.all().count()
     }
     return render(request, 'task/home.html', context)
 
@@ -58,20 +59,16 @@ def done_delete_task_view(request):
     return task_view(request, 'Bajarilgan va O`chirilgan', 'DONE & DELETE', 'dark')
 
 
-def none():
-    pass
-
-
 @login_required
 def search(request):
     q = request.POST.get('search', '') if request.method == 'POST' else request.GET.get('search', '')
 
     if not q.strip():
-        tasks = Task.objects, none()
+        tasks = Task.objects.none()
     else:
         tasks = Task.objects.filter(title__icontains=q)
 
-    tasks_count = tasks
+    tasks_count = tasks.count()
     paginator = Paginator(tasks, 7)
     page_number = request.GET.get('page')
     tasks = paginator.get_page(page_number)

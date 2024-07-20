@@ -3,7 +3,7 @@
 {% block title %}
 Home
 {% endblock %}
-
+{% load static %}
 {% block contend %}
 
 {% include 'task/navbar.html' %}
@@ -14,10 +14,15 @@ Home
 
 
 <!-- TABLE -->
+{% if tasks %}
 <table class="table table-hover mt-5">
     <thead>
     <tr>
-        <th class="w-75" scope="col">Topshiriqlar <span class="text-danger">9</span> ta</th>
+        <th class="w-75" scope="col"><span class="text-{{ class }}">{{ sms }} </span> topshiriqlar <b
+                class="badge text-bg-{{ class }}">
+            {{ tasks|length }}
+        </b> ta.
+        </th>
         <th scope="col">O`zgartirish</th>
         <th scope="col">O`chirish</th>
     </tr>
@@ -25,26 +30,62 @@ Home
     <tbody>
     {% for task in tasks %}
     <tr>
-        <th scope="row" data-bs-toggle="modal" data-bs-target="#exampleDetailModal">
+        <th scope="row" data-bs-toggle="modal" data-bs-target="#exampleDetailModal" data-task-id="{{ task.id }}"
+            data-task-title="{{ task.title }}"
+            data-task-description="{{ task.description }}"
+            data-task-done="{{ task.is_done }}"
+            data-task-deleted="{{ task.is_delete }}"
+            data-task-created="{{ task.created_at }}"
+            data-task-updated="{{ task.updated_at }}">
             <a href="#"><h5>{{ task.title }}</h5></a>
-            <span class="text-secondary">June 27, 2024</span>
-            <span class="text-secondary float-end">4:38 p.m.</span>
+            <span class="badge text-bg-{{task.css_class}}">{{ task.status_code }}</span>
+            <span class="text-secondary">{{ task.updated_at | date }}</span>
+            <span class="text-secondary float-end">{{ task.updated_at | time }}</span>
         </th>
+        <!-- EDIT BUTTON -->
         <td class="text-center align-middle">
-            <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleEditModal">
+            <button type="submit" class="btn btn-outline-warning" data-bs-toggle="modal"
+                    data-bs-target="#exampleEditModal"
+                    data-task-id="{{ task.id }}"
+                    data-task-title="{{ task.title }}"
+                    data-task-description="{{ task.description }}"
+                    data-task-done="{{ task.is_done }}"
+                    data-task-deleted="{{ task.is_delete }}">
                 <i class="bi bi-pencil-square"></i>
             </button>
         </td>
+        <!-- DELETE BUTTON -->
         <td class="text-center align-middle">
-            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleDeleteModal">
-                <i class="bi bi-trash3-fill"></i>
+            {% if task.status_code != 'DELETE' and task.status_code != 'DONE & DELETE' %}
+            <button type="submit" class="btn btn-outline-danger" data-bs-toggle="modal"
+                    data-bs-target="#exampleDeleteModal"
+                    data-task-id="{{ task.id }}">
+                <i class="bi bi-trash"></i>
             </button>
+            {% endif %}
         </td>
+
     </tr>
     {% endfor %}
     </tbody>
 </table>
-
+<!-- PAGINATION -->
 {% include 'task/pagenation.html' %}
+{% else %}
+<!-- 404 NOT FOUND -->
+<div class="d-flex justify-content-center mt-5">
+    <img src="{% static 'task/image/404.png' %}" class="w-25 text-center" alt="rasm">
+</div>
+<h1 class="text-center">Hech qanday ma'lumot topilmadi!</h1>
+
+<!-- GO BACK BUTTON -->
+<div class="d-flex justify-content-center mt-4">
+    <a href="{% url 'home-view' %}" class="btn btn-dark">
+        <i class="bi bi-arrow-bar-left"></i>
+        Bosh sahifaga qaytish
+    </a>
+</div>
+
+{% endif %}
 
 {% endblock %}

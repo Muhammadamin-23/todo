@@ -1,17 +1,53 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleDetailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5 text-secondary" id="exampleModalLabel">Batafsil Ma'lumot</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary">Yopish</button>
-      </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-secondary" id="exampleModalLabel">Batafsil Ma'lumot</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- title -->
+                <div>
+                    <strong>Sarlavha:</strong>
+                    <p id="detailTaskTitle"></p>
+                </div>
+
+
+                <!-- description -->
+                <div>
+                    <strong>Tavsif:</strong>
+                    <p id="detailTaskDescription"></p>
+                </div>
+
+                <!-- is_done -->
+                <div>
+                    <strong>Bajarildi:</strong>
+                    <p id="detailTaskDone"></p>
+                </div>
+
+                <!-- is_delete -->
+                <div>
+                    <strong>O'chirildi:</strong>
+                    <p id="detailTaskDeleted"></p>
+                </div>
+
+                <!-- created_at -->
+                <div>
+                    <strong>Yaratish:</strong>
+                    <p id="detailTaskCreatedAt"></p>
+                </div>
+
+                <!-- updated_at -->
+                <div>
+                    <strong>O'zgartirish:</strong>
+                    <p id="detailTaskUpdatedAt"></p>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Yopish</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
